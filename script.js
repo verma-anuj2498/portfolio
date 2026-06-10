@@ -2,6 +2,23 @@
    Anuj Kumar — Portfolio Scripts
    ───────────────────────────────────────────── */
 
+/* ─── Dark mode toggle ─── */
+const themeToggle = document.getElementById('themeToggle');
+const root        = document.documentElement;
+
+// Restore saved preference or default to light
+const savedTheme = localStorage.getItem('theme') || 'light';
+root.setAttribute('data-theme', savedTheme);
+themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+themeToggle.addEventListener('click', () => {
+  const isDark = root.getAttribute('data-theme') === 'dark';
+  const next   = isDark ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('theme', next);
+});
+
 /* ─── Navbar: scroll shadow + active section highlight ─── */
 const navbar    = document.getElementById('navbar');
 const scrollBtn = document.getElementById('scrollTop');
